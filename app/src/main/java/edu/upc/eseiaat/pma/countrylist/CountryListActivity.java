@@ -1,6 +1,7 @@
 package edu.upc.eseiaat.pma.countrylist;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,6 +10,7 @@ import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -18,6 +20,8 @@ public class CountryListActivity extends AppCompatActivity {
 
     private ArrayList<String> country_list;
     private ArrayAdapter<String> adapter;
+    private String title = "";
+    private TextView title_text;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +50,7 @@ public class CountryListActivity extends AppCompatActivity {
         list.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(CountryListActivity.this);
+                /*AlertDialog.Builder builder = new AlertDialog.Builder(CountryListActivity.this);
                 String msg = getResources().getString(R.string.sure);
                 builder.setMessage(msg + " " + country_list.get(position) + "?");
 
@@ -59,7 +63,12 @@ public class CountryListActivity extends AppCompatActivity {
                 });
 
                 builder.setNegativeButton(android.R.string.cancel,null);
-                builder.create().show();
+                builder.create().show();*/
+                Intent intent = new Intent(CountryListActivity.this, EditCountryList.class);
+                // 2. Afegir paràmetres (dades extra) a la crida a l'activitat
+                intent.putExtra("country", country_list.get(position));
+                // 3. Passar l'intent a Android perquè obri l'activitat
+                startActivityForResult(intent, 0);
                 return true;
             }
         });
