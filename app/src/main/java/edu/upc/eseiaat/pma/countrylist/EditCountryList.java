@@ -24,9 +24,9 @@ public class EditCountryList extends AppCompatActivity {
 
     public void saveCounty(View view) {
         // (III)
-        String new_title = edit_country.getText().toString();
+        String new_country = edit_country.getText().toString();
         Intent data = new Intent();
-        data.putExtra("title", new_title);
+        data.putExtra("country", new_country);
         setResult(RESULT_OK, data);
         finish();
     }

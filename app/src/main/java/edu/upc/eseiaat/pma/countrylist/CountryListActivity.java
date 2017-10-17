@@ -64,10 +64,9 @@ public class CountryListActivity extends AppCompatActivity {
 
                 builder.setNegativeButton(android.R.string.cancel,null);
                 builder.create().show();*/
+
                 Intent intent = new Intent(CountryListActivity.this, EditCountryList.class);
-                // 2. Afegir paràmetres (dades extra) a la crida a l'activitat
                 intent.putExtra("country", country_list.get(position));
-                // 3. Passar l'intent a Android perquè obri l'activitat
                 startActivityForResult(intent, 0);
                 return true;
             }
