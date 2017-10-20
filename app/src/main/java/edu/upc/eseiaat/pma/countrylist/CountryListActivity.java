@@ -67,10 +67,22 @@ public class CountryListActivity extends AppCompatActivity {
 
                 Intent intent = new Intent(CountryListActivity.this, EditCountryList.class);
                 intent.putExtra("country", country_list.get(position));
+                intent.putExtra("pos", position);
                 startActivityForResult(intent, 0);
                 return true;
             }
         });
+    }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (requestCode) {
+        case 0:
+            if (resultCode == AppCompatActivity.RESULT_OK) {
+                int pos = data.getIntExtra("pos", -1);
+                country_list.set(pos, data.getStringExtra("country"));
+            }
+        }
+        adapter.notifyDataSetChanged();
     }
 }
